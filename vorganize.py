@@ -61,6 +61,17 @@ def view_timetable(data):
                 status = "✓" if module in data["progress"] and task in data["progress"][module] else "✗"
                 print(f"    {idx}. [{status}] {task}")
 
+def remove_task(data, day, module, task):
+    if day in data["timetable"] and module in data["timetable"][day]:
+        if task in data["timetable"][day][module]:
+            data["timetable"][day][module].remove(task)
+            save_data(data)
+            print("Removed task: ", task)
+        else:
+            print("Task not found.")
+    else:
+        print("Day or module not found.")
+
 def main():
     data = load_data()
     while True:
@@ -69,7 +80,9 @@ def main():
         print("2. Add Task")
         print("3. Mark Task Complete")
         print("4. View Timetable")
-        print("5. Exit")
+        print("5. Remove Task")
+        print("6. Exit")
+
         choice = input("Choose an option: ")
         
         if choice == "1":
@@ -139,6 +152,12 @@ def main():
         elif choice == "4":
             view_timetable(data)
         elif choice == "5":
+            day = input("Enter day (e.g., Monday): ")
+            module = input("Enter module name: ")
+            task = input("Enter task description to remove: ")
+            remove_task(data, day, module, task)
+        elif choice == "6":
+            print("Exiting program.")
             break
         else:
             print("Invalid option. Please try again.")
