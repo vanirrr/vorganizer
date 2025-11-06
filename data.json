@@ -1,4 +1,17 @@
 {
-    "timetable": {},
-    "progress": {}
+    "timetable": {
+        "Tuesday": {
+            "Algo": [
+                "Die"
+            ]
+        }
+    },
+    "progress": {
+        "Algo": [
+            "Solve exercises"
+        ]
+    },
+    "categories": [
+        "Algo"
+    ]
 }
